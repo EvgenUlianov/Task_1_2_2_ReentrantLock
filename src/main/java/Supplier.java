@@ -11,24 +11,14 @@ public class Supplier extends Thread implements Runnable{
     public void run() {
 //        final int timeOut15 = 15_000;
         Random random = new Random();
-        final int timeOut = 1000 + random.nextInt(1000);
+        final int timeOut = 100 + random.nextInt(100);
         String currentName = super.getName();
         CarShowroom carShowroom = CarShowroom.get();
 
-        try {
-            Thread.sleep(timeOut);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        carShowroom.lock();
-        try {
-            carShowroom.addOneCar();
-            carShowroom.signalAll();
-        } finally {
-            carShowroom.unlock();
-        }
+        CarShowroom.sleep(timeOut);
+        //System.out.printf("%s зашел в автосалон.\n", currentName);
 
-        System.out.printf("%s произвел автомобиль.\n", currentName);
-    }
+        carShowroom.addOneCar(currentName, timeOut);
+   }
 
 }

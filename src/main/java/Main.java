@@ -28,14 +28,13 @@ public class Main {
         for (String brand: brands)
             threadPool.execute(new Supplier(brand));
 
-        final int timeOut15 = 15_000;
-        try {
-            Thread.sleep(timeOut15);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        final int timeOutLong = 30_000;
+        final int timeOutShort = 2_500;
+        CarShowroom.sleep(timeOutLong);
 
         threadPool.shutdownNow();
+        CarShowroom.sleep(timeOutShort);
+        System.out.println("автосалон закрывается");
 
     }
 }
