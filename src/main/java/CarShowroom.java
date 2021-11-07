@@ -25,7 +25,7 @@ public class CarShowroom {
         return Holder.carShowroom;
     }
 
-    public synchronized void addOneCar(String currentName, int timeOut) {
+    public void addOneCar(String currentName, int timeOut) {
         try{
             lock.lock();
             sleep(timeOut);
@@ -38,7 +38,7 @@ public class CarShowroom {
         }
     }
 
-    public synchronized void subtractOneCar(String currentName,int timeOut) {
+    public void subtractOneCar(String currentName,int timeOut) {
         try{
             lock.lock();
             while (numberOfCars == 0){
